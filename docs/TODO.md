@@ -4,23 +4,26 @@
 
 ### Week 1-2: Project Setup & Infrastructure
 
-#### Development Environment Setup
+#### Development Environment Setup (LATER)
+
 - [x] Create GitHub repository with proper README
-- [ ] Set up Git workflow (GitFlow or similar)
-- [ ] Configure branch protection rules
-- [ ] Set up GitHub Projects for task management
-- [ ] Create development team access permissions
-- [ ] Set up Discord/Slack for team communication
+- [l] Set up Git workflow (GitFlow or similar)
+- [l] Configure branch protection rules
+- [l] Set up GitHub Projects for task management
+- [l] Create development team access permissions
+- [l] Set up Discord/Slack for team communication
 
 #### Project Structure
+
 - [x] Initialize monorepo structure (apps/backend, apps/frontend, packages/shared)
 - [x] Set up TypeScript configuration for all packages
 - [x] Configure ESLint and Prettier for code consistency
-- [ ] Set up Husky for pre-commit hooks
+- [x] Set up Husky for pre-commit hooks
 - [x] Create shared types package structure
 - [x] Set up Jest configuration for testing
 
 #### Backend Foundation
+
 - [x] Initialize Node.js project with Express.js
 - [x] Configure TypeScript compilation
 - [x] Set up basic Express server structure
@@ -31,6 +34,7 @@
 - [x] Configure CORS for frontend integration
 
 #### Database Setup
+
 - [x] Set up PostgreSQL development database
 - [x] Install and configure Prisma ORM
 - [x] Create initial Prisma schema structure
@@ -40,6 +44,7 @@
 - [x] Set up database migration workflow
 
 #### Frontend Foundation
+
 - [x] Initialize React 18 project with Vite
 - [x] Configure TypeScript for React
 - [x] Set up Material-UI with RTL support
@@ -49,6 +54,7 @@
 - [x] Set up development server with hot reload
 
 #### Development Tools
+
 - [ ] Set up Docker development environment
 - [ ] Create docker-compose.dev.yml
 - [ ] Configure VS Code workspace settings
@@ -59,6 +65,7 @@
 ### Week 3-6: Authentication & Basic User Management
 
 #### Backend Authentication
+
 - [x] Design user registration/login database schema
 - [x] Implement JWT token generation and validation
 - [x] Create password hashing with bcrypt
@@ -71,6 +78,7 @@
 - [x] Create user profile management endpoints
 
 #### Frontend Authentication
+
 - [x] Design login/register forms with Persian support
 - [x] Implement form validation with Yup
 - [x] Create authentication Redux slice
@@ -83,6 +91,7 @@
 - [x] Implement automatic token refresh
 
 #### Database Schema v1
+
 - [x] Create users table with all required fields
 - [x] Add user authentication related tables
 - [x] Create database indexes for performance
@@ -94,6 +103,7 @@
 ### Week 7-10: Core Game Board Implementation
 
 #### Map System Backend
+
 - [x] Design game map database schema
 - [ ] Create 20x20 grid data structure
 - [x] Implement region-based map division
@@ -104,6 +114,7 @@
 - [ ] Add map import/export functionality
 
 #### Map System Frontend
+
 - [ ] Set up Konva.js for canvas rendering
 - [ ] Create responsive 20x20 grid component
 - [ ] Implement grid coordinate system
@@ -114,6 +125,7 @@
 - [ ] Add grid measurement tools
 
 #### Ship Token System
+
 - [x] Design ship representation data structure
 - [ ] Create ship token visual components
 - [ ] Implement draggable ship tokens
@@ -124,6 +136,7 @@
 - [ ] Implement ship collision detection
 
 #### Map Features Implementation
+
 - [ ] Create island placement system
 - [ ] Build port location markers
 - [ ] Add reef and hazard indicators
@@ -136,6 +149,7 @@
 ### Week 11-12: Basic Multiplayer Infrastructure
 
 #### Real-time Communication
+
 - [x] Set up Socket.io server configuration
 - [ ] Implement room-based communication
 - [ ] Create player connection handling
@@ -146,6 +160,7 @@
 - [ ] Add user presence indicators
 
 #### Game Room Management
+
 - [x] Design game room database schema
 - [ ] Create game room creation API
 - [ ] Build game room joining system
@@ -156,6 +171,7 @@
 - [ ] Add game room deletion/cleanup
 
 #### Basic Chat System
+
 - [ ] Design chat message data structure
 - [ ] Create chat message storage
 - [ ] Build real-time chat interface
@@ -172,6 +188,7 @@
 ### Week 13-16: Comprehensive Dice Engine
 
 #### Core Dice System
+
 - [ ] Create base dice rolling engine
 - [ ] Implement d6, d12, d20 dice types
 - [ ] Add multiple dice rolling (2d6, etc.)
@@ -182,6 +199,7 @@
 - [ ] Build dice roll validation
 
 #### Game-Specific Roll Types
+
 - [ ] Implement navigation roll mechanics (d20 + seamanship)
 - [ ] Create combat roll system (2d6 + bravery)
 - [ ] Build trade roll mechanics (d12 + charisma)
@@ -192,6 +210,7 @@
 - [ ] Create random encounter rolls
 
 #### Dice Interface
+
 - [ ] Design dice rolling UI components
 - [ ] Create animated dice visualization
 - [ ] Add Persian number display
@@ -202,6 +221,7 @@
 - [ ] Build roll sharing system
 
 #### Dice Logging & History
+
 - [ ] Create dice roll database schema
 - [ ] Implement roll result storage
 - [ ] Build roll history retrieval
@@ -214,6 +234,7 @@
 ### Week 17-20: Combat System Implementation
 
 #### Combat Data Structures
+
 - [ ] Design combat instance database schema
 - [ ] Create combat participant tracking
 - [ ] Implement combat state management
@@ -224,6 +245,7 @@
 - [ ] Create combat statistics system
 
 #### Artillery Phase System
+
 - [ ] Build distance calculation engine
 - [ ] Implement range-based difficulty system
 - [ ] Create wind effect calculations
@@ -234,6 +256,7 @@
 - [ ] Add grappling attempt system
 
 #### Combat Actions
+
 - [ ] Implement firing/cannonade actions
 - [ ] Create ship maneuvering system
 - [ ] Build repair action mechanics
@@ -244,6 +267,7 @@
 - [ ] Build action point system
 
 #### Boarding Phase
+
 - [ ] Create crew-vs-crew combat system
 - [ ] Implement automatic boarding resolution
 - [ ] Add crew morale effects
@@ -254,6 +278,7 @@
 - [ ] Build boarding aftermath system
 
 #### Combat Interface
+
 - [ ] Design combat UI layout
 - [ ] Create action selection interface
 - [ ] Build combat status displays
@@ -266,6 +291,7 @@
 ### Week 21-24: Trading & Economy System
 
 #### Market System Backend
+
 - [x] Design goods and pricing database schema
 - [ ] Create dynamic price calculation engine
 - [ ] Implement supply and demand mechanics
@@ -276,6 +302,7 @@
 - [ ] Build trade route optimization
 
 #### Goods Management
+
 - [ ] Define all tradeable goods types
 - [ ] Create goods rarity system
 - [ ] Implement goods quality variations
@@ -286,6 +313,7 @@
 - [ ] Implement special event goods
 
 #### Trading Interface
+
 - [ ] Design market overview interface
 - [ ] Create goods buying interface
 - [ ] Build goods selling interface
@@ -296,6 +324,7 @@
 - [ ] Build trade history tracking
 
 #### Cargo Management
+
 - [x] Create ship cargo database schema
 - [ ] Implement cargo capacity limitations
 - [ ] Build cargo loading/unloading system
@@ -306,6 +335,7 @@
 - [ ] Build cargo manifest system
 
 #### Reputation Integration
+
 - [ ] Create trading reputation tracking
 - [ ] Implement reputation-based discounts
 - [ ] Add reputation decay mechanics
@@ -322,6 +352,7 @@
 ### Week 25-28: Weather & Environmental Systems
 
 #### Weather System Backend
+
 - [ ] Design weather database schema
 - [ ] Create regional weather tracking
 - [ ] Implement weather pattern generation
@@ -332,6 +363,7 @@
 - [ ] Build weather forecasting system
 
 #### Wind Mechanics
+
 - [ ] Create wind direction system (8 directions)
 - [ ] Implement wind strength levels (0-3)
 - [ ] Build wind effect calculations
@@ -342,6 +374,7 @@
 - [ ] Build wind prediction system
 
 #### Environmental Hazards
+
 - [ ] Create reef placement system
 - [ ] Implement fog bank mechanics
 - [ ] Build storm generation system
@@ -352,6 +385,7 @@
 - [ ] Build environmental damage system
 
 #### Weather Interface
+
 - [ ] Design weather control panel for GM
 - [ ] Create weather visualization system
 - [ ] Build wind indicator displays
@@ -364,6 +398,7 @@
 ### Week 29-32: Mission & Quest System
 
 #### Mission Framework
+
 - [x] Design mission database schema
 - [ ] Create mission template system
 - [ ] Implement mission generation mechanics
@@ -374,6 +409,7 @@
 - [ ] Build mission completion tracking
 
 #### Mission Types
+
 - [ ] Create escort mission mechanics
 - [ ] Build treasure hunting missions
 - [ ] Implement pirate hunting quests
@@ -384,6 +420,7 @@
 - [ ] Add mystery/investigation quests
 
 #### Mission Management
+
 - [ ] Create mission board interface
 - [ ] Build mission assignment system
 - [ ] Implement mission progress tracking
@@ -394,6 +431,7 @@
 - [ ] Implement mission cancellation system
 
 #### Reward System
+
 - [ ] Create reward calculation engine
 - [ ] Implement gold reward distribution
 - [ ] Build reputation reward system
@@ -406,6 +444,7 @@
 ### Week 33-36: UI/UX Polish & Advanced Features
 
 #### Persian Language Support
+
 - [x] Implement complete RTL layout system
 - [x] Add Persian font optimization
 - [ ] Create Persian number formatting
@@ -416,6 +455,7 @@
 - [ ] Build Persian localization system
 
 #### Advanced Ship Management
+
 - [ ] Create detailed ship customization
 - [ ] Implement ship upgrade system
 - [ ] Build ship maintenance mechanics
@@ -426,6 +466,7 @@
 - [ ] Add ship sharing/trading system
 
 #### GM Tools Enhancement
+
 - [ ] Create advanced map editor
 - [ ] Build NPC management system
 - [ ] Implement story planning tools
@@ -436,6 +477,7 @@
 - [ ] Implement GM dashboard system
 
 #### Performance Optimization
+
 - [ ] Optimize database queries
 - [ ] Implement data caching system
 - [ ] Build image optimization
@@ -452,6 +494,7 @@
 ### Week 37-40: Comprehensive Testing
 
 #### Unit Testing
+
 - [ ] Write tests for all utility functions
 - [ ] Test all API endpoints
 - [ ] Create tests for game logic
@@ -462,6 +505,7 @@
 - [ ] Test weather system logic
 
 #### Integration Testing
+
 - [ ] Test frontend-backend integration
 - [ ] Verify WebSocket communication
 - [ ] Test database operations
@@ -472,6 +516,7 @@
 - [ ] Validate cross-browser compatibility
 
 #### End-to-End Testing
+
 - [ ] Create full gameplay scenarios
 - [ ] Test complete combat encounters
 - [ ] Validate trading workflows
@@ -482,6 +527,7 @@
 - [ ] Test mobile responsiveness
 
 #### Performance Testing
+
 - [ ] Load test with multiple concurrent games
 - [ ] Stress test WebSocket connections
 - [ ] Test database performance under load
@@ -492,6 +538,7 @@
 - [ ] Validate caching effectiveness
 
 #### Security Testing
+
 - [ ] Test authentication security
 - [ ] Validate input sanitization
 - [ ] Test SQL injection prevention
@@ -504,6 +551,7 @@
 ### Week 41-44: Documentation & Training
 
 #### User Documentation
+
 - [ ] Write complete user manual in Persian
 - [ ] Create quick start guide
 - [ ] Build video tutorial series
@@ -514,6 +562,7 @@
 - [ ] Write mobile usage guide
 
 #### GM Documentation
+
 - [ ] Create comprehensive GM guide
 - [ ] Write campaign setup instructions
 - [ ] Build encounter design guide
@@ -524,6 +573,7 @@
 - [ ] Write advanced features guide
 
 #### Developer Documentation
+
 - [ ] Create API documentation
 - [ ] Write database schema documentation
 - [ ] Build deployment guide
@@ -534,6 +584,7 @@
 - [ ] Write security best practices
 
 #### Training Materials
+
 - [ ] Create interactive tutorial system
 - [ ] Build demo scenarios
 - [ ] Create training videos
@@ -546,6 +597,7 @@
 ### Week 45-48: Launch Preparation & Deployment
 
 #### Production Environment
+
 - [ ] Set up production servers
 - [ ] Configure production database
 - [ ] Set up SSL certificates
@@ -556,6 +608,7 @@
 - [ ] Configure alert systems
 
 #### CI/CD Pipeline
+
 - [ ] Set up automated testing pipeline
 - [ ] Configure deployment automation
 - [ ] Set up staging environment
@@ -566,6 +619,7 @@
 - [ ] Set up error reporting
 
 #### Launch Strategy
+
 - [ ] Plan beta testing program
 - [ ] Create launch announcement
 - [ ] Set up community platforms
@@ -576,6 +630,7 @@
 - [ ] Create feedback channels
 
 #### Post-Launch Support
+
 - [ ] Set up bug tracking system
 - [ ] Create support ticket system
 - [ ] Plan regular updates schedule
@@ -590,6 +645,7 @@
 ## Ongoing Tasks (Throughout Development)
 
 ### Quality Assurance
+
 - [ ] Code review process for all changes
 - [ ] Regular security audits
 - [ ] Performance monitoring and optimization
@@ -600,6 +656,7 @@
 - [ ] Persian language accuracy verification
 
 ### Project Management
+
 - [ ] Weekly sprint planning
 - [ ] Daily standup meetings
 - [ ] Sprint retrospectives
@@ -610,6 +667,7 @@
 - [ ] Team coordination and communication
 
 ### Technical Debt Management
+
 - [ ] Regular code refactoring
 - [ ] Dependency updates
 - [ ] Security patch management
@@ -624,6 +682,7 @@
 ## Critical Success Metrics
 
 ### Development Metrics
+
 - [ ] Maintain 90%+ test coverage
 - [ ] Keep build time under 5 minutes
 - [ ] Maintain less than 50ms API response times
@@ -634,6 +693,7 @@
 - [ ] Achieve A+ security grade
 
 ### User Experience Metrics
+
 - [ ] Less than 3 second page load times
 - [ ] 60fps animation performance
 - [ ] Less than 100ms real-time update latency

@@ -16,13 +16,30 @@
     "build:backend": "npm run build --workspace=apps/backend",
     "test": "npm run test --workspaces",
     "lint": "npm run lint --workspaces",
+    "lint:fix": "npm run lint:fix --workspaces",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "type-check": "npm run type-check --workspaces",
+    "prepare": "husky",
     "db:generate": "npm run db:generate --workspace=apps/backend",
     "db:migrate": "npm run db:migrate --workspace=apps/backend",
     "db:studio": "npm run db:studio --workspace=apps/backend"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
-    "concurrently": "^9.0.1",
     "@types/node": "^20.0.0",
+    "concurrently": "^9.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
     "typescript": "^5.0.0"
   },
   "engines": {

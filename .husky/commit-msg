@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Validate commit message format
+# This hook ensures commit messages follow conventional commit format
+# Format: type(scope): description
+# Examples:
+#   feat: add user authentication
+#   fix(api): resolve login endpoint issue
+#   docs: update README
+#   style: format code with prettier
+
+commit_regex='^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\(.+\))?: .{1,50}'
+
+if ! grep -qE "$commit_regex" "$1"; then
+    echo "❌ Invalid commit message format!"
+    echo ""
+    echo "Commit message should follow the format:"
+    echo "  type(scope): description"
+    echo ""
+    echo "Types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, revert"
+    echo "Scope is optional but recommended (e.g., api, ui, auth, etc.)"
+    echo ""
+    echo "Examples:"
+    echo "  feat: add user authentication"
+    echo "  fix(api): resolve login endpoint issue"
+    echo "  docs: update README"
+    echo ""
+    exit 1
+fi
