@@ -1,0 +1,162 @@
+// Basic Prisma schema for High Seas VTT
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Users and Authentication
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // User can be a player in multiple games
+  players   Player[]
+  
+  @@map("users")
+}
+
+// Games
+model Game {
+  id           String     @id @default(uuid())
+  name         String
+  gmId         String     @map("gm_id")
+  status       GameStatus @default(SETUP)
+  currentRound Int        @default(1) @map("current_round")
+  currentPhase GamePhase  @default(WIND) @map("current_phase")
+  settings     Json?      // Game configuration settings
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+  
+  // Relations
+  players      Player[]
+  gameLog      GameLog[]
+  markets      Market[]
+  missions     Mission[]
+  
+  @@map("games")
+}
+
+// Players in games
+model Player {
+  id           String @id @default(uuid())
+  gameId       String @map("game_id")
+  userId       String @map("user_id")
+  captainName  String @map("captain_name")
+  captainStats Json   @map("captain_stats") // { cunning, bravery, charisma, seamanship }
+  reputation   Json   // { military, trading, pirate }
+  gold         Int    @default(150)
+  position     Json   // { x, y, region }
+  createdAt    DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  game         Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ship         Ship?
+  gameLog      GameLog[]
+  missions     Mission[]
+  
+  @@unique([gameId, userId])
+  @@map("players")
+}
+
+// Ships
+model Ship {
+  id        String @id @default(uuid())
+  playerId  String @unique @map("player_id")
+  name      String
+  stats     Json   // ship statistics (speed, durability, cannons, etc.)
+  cargo     Json   // current cargo
+  crew      Json   // crew information
+  condition Json   // ship condition (hull damage, mast condition, etc.)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  player    Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  
+  @@map("ships")
+}
+
+// Game action logging
+model GameLog {
+  id         String   @id @default(uuid())
+  gameId     String   @map("game_id")
+  playerId   String?  @map("player_id")
+  actionType String   @map("action_type")
+  details    Json
+  timestamp  DateTime @default(now())
+  
+  // Relations
+  game       Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  player     Player?  @relation(fields: [playerId], references: [id], onDelete: SetNull)
+  
+  @@map("game_log")
+}
+
+// Markets and Economy
+model Market {
+  id           String   @id @default(uuid())
+  gameId       String   @map("game_id")
+  locationId   String   @map("location_id") // e.g., "port_royal", "tortuga"
+  goodsPrices  Json     @map("goods_prices") // current prices for all goods
+  supplyLevels Json     @map("supply_levels") // supply/demand levels
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  game         Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  
+  @@unique([gameId, locationId])
+  @@map("markets")
+}
+
+// Missions
+model Mission {
+  id           String        @id @default(uuid())
+  gameId       String        @map("game_id")
+  title        String
+  description  String
+  requirements Json          // mission requirements
+  rewards      Json          // mission rewards
+  status       MissionStatus @default(AVAILABLE)
+  assignedToId String?       @map("assigned_to_id")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  
+  // Relations
+  game         Game          @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  assignedTo   Player?       @relation(fields: [assignedToId], references: [id], onDelete: SetNull)
+  
+  @@map("missions")
+}
+
+// Enums
+enum GameStatus {
+  SETUP
+  ACTIVE
+  PAUSED
+  COMPLETED
+}
+
+enum GamePhase {
+  WIND
+  PLANNING
+  MOVEMENT
+  ACTION
+  MAINTENANCE
+}
+
+enum MissionStatus {
+  AVAILABLE
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}

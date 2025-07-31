@@ -1,0 +1,43 @@
+{
+  "name": "high-seas-vtt",
+  "version": "1.0.0",
+  "description": "Virtual Tabletop for آب‌های آزاد (High Seas) Persian pirate strategy game",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "npm run dev --workspace=apps/frontend",
+    "dev:backend": "npm run dev --workspace=apps/backend",
+    "build": "npm run build --workspace=apps/frontend && npm run build --workspace=apps/backend",
+    "build:frontend": "npm run build --workspace=apps/frontend",
+    "build:backend": "npm run build --workspace=apps/backend",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "db:generate": "npm run db:generate --workspace=apps/backend",
+    "db:migrate": "npm run db:migrate --workspace=apps/backend",
+    "db:studio": "npm run db:studio --workspace=apps/backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "vtt",
+    "virtual-tabletop",
+    "persian",
+    "pirate",
+    "strategy-game",
+    "multiplayer",
+    "real-time"
+  ],
+  "author": "High Seas Development Team",
+  "license": "MIT"
+}
