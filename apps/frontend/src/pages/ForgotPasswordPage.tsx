@@ -13,18 +13,17 @@ import {
   alpha,
   InputAdornment,
 } from '@mui/material';
-import {
-  ArrowBack,
-  Email,
-  LockReset,
-} from '@mui/icons-material';
+import { ArrowBack, Email, LockReset } from '@mui/icons-material';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 const schema = yup.object({
-  email: yup.string().email('Invalid email address').required('Email is required'),
+  email: yup
+    .string()
+    .email('Invalid email address')
+    .required('Email is required'),
 });
 
 interface ForgotPasswordFormData {
@@ -53,16 +52,18 @@ const ForgotPasswordPage: React.FC = () => {
     setIsLoading(true);
     setError(null);
     setSuccess(null);
-    
+
     try {
       // TODO: Implement actual forgot password logic
       console.log('Forgot password data:', data);
-      
+
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setSuccess('Password reset link has been sent to your email address. Please check your inbox.');
-    } catch (err) {
+
+      setSuccess(
+        'Password reset link has been sent to your email address. Please check your inbox.'
+      );
+    } catch (_err) {
       setError('Failed to send reset email. Please try again.');
     } finally {
       setIsLoading(false);
@@ -88,15 +89,16 @@ const ForgotPasswordPage: React.FC = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 50% 50%, rgba(33, 150, 243, 0.1) 0%, transparent 50%)',
+          background:
+            'radial-gradient(circle at 50% 50%, rgba(33, 150, 243, 0.1) 0%, transparent 50%)',
         },
       }}
     >
-      <Container maxWidth="sm" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth='sm' sx={{ position: 'relative', zIndex: 1 }}>
         {/* Back to Login Button */}
         <Box sx={{ mb: 3 }}>
           <Button
-            startIcon={<ArrowBack />}
+            startIcon={<ArrowBack sx={{ transform: 'rotateY(180deg)' }} />}
             onClick={() => navigate('/login')}
             sx={{
               color: 'text.secondary',
@@ -105,7 +107,7 @@ const ForgotPasswordPage: React.FC = () => {
               },
             }}
           >
-            Back to Login
+            بازگشت به ورود
           </Button>
         </Box>
 
@@ -138,8 +140,8 @@ const ForgotPasswordPage: React.FC = () => {
               <LockReset sx={{ fontSize: 32, color: 'white' }} />
             </Box>
             <Typography
-              variant="h4"
-              component="h1"
+              variant='h4'
+              component='h1'
               sx={{
                 fontWeight: 'bold',
                 mb: 1,
@@ -148,40 +150,40 @@ const ForgotPasswordPage: React.FC = () => {
             >
               فراموشی رمز عبور
             </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            <Typography variant='body2' sx={{ color: 'text.secondary' }}>
               لطفاً ایمیل خود را وارد کنید تا لینک بازیابی ارسال شود.
             </Typography>
           </Box>
 
           {/* Error/Success Alert */}
           {error && (
-            <Alert severity="error" sx={{ mb: 3 }}>
+            <Alert severity='error' sx={{ mb: 3 }}>
               {error}
             </Alert>
           )}
           {success && (
-            <Alert severity="success" sx={{ mb: 3 }}>
+            <Alert severity='success' sx={{ mb: 3 }}>
               {success}
             </Alert>
           )}
 
           {/* Forgot Password Form */}
-          <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+          <Box component='form' onSubmit={handleSubmit(onSubmit)}>
             <Controller
-              name="email"
+              name='email'
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
-                  label="آدرس ایمیل"
-                  type="email"
+                  label='آدرس ایمیل'
+                  type='email'
                   error={!!errors.email}
                   helperText={errors.email?.message}
                   sx={{ mb: 4 }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position='start'>
                         <Email sx={{ color: 'text.secondary' }} />
                       </InputAdornment>
                     ),
@@ -191,10 +193,10 @@ const ForgotPasswordPage: React.FC = () => {
             />
 
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
-              size="large"
+              variant='contained'
+              size='large'
               disabled={isLoading}
               sx={{
                 py: 1.5,
@@ -218,11 +220,11 @@ const ForgotPasswordPage: React.FC = () => {
 
           {/* Footer Links */}
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant='body2' color='text.secondary'>
               رمز عبور خود را به خاطر دارید؟{' '}
               <Link
                 component={RouterLink}
-                to="/login"
+                to='/login'
                 sx={{
                   color: theme.palette.primary.main,
                   textDecoration: 'none',
@@ -235,11 +237,11 @@ const ForgotPasswordPage: React.FC = () => {
                 ورود کنید
               </Link>
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+            <Typography variant='body2' color='text.secondary' sx={{ mt: 1 }}>
               حساب کاربری ندارید؟{' '}
               <Link
                 component={RouterLink}
-                to="/register"
+                to='/register'
                 sx={{
                   color: theme.palette.primary.main,
                   textDecoration: 'none',

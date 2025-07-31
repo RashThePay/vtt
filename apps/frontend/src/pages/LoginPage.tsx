@@ -30,8 +30,14 @@ import { loginUser, clearError } from '../store/slices/authSlice';
 import type { AppDispatch, RootState } from '../store/store';
 
 const schema = yup.object({
-  email: yup.string().email('آدرس ایمیل نامعتبر است').required('ایمیل الزامی است'),
-  password: yup.string().min(6, 'رمز عبور باید حداقل ۶ کاراکتر باشد').required('رمز عبور الزامی است'),
+  email: yup
+    .string()
+    .email('آدرس ایمیل نامعتبر است')
+    .required('ایمیل الزامی است'),
+  password: yup
+    .string()
+    .min(6, 'رمز عبور باید حداقل ۶ کاراکتر باشد')
+    .required('رمز عبور الزامی است'),
 });
 
 interface LoginFormData {
@@ -43,7 +49,9 @@ const LoginPage: React.FC = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, error, isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isLoading, error, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -96,15 +104,16 @@ const LoginPage: React.FC = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 70% 80%, rgba(220, 0, 78, 0.1) 0%, transparent 50%)',
+          background:
+            'radial-gradient(circle at 70% 80%, rgba(220, 0, 78, 0.1) 0%, transparent 50%)',
         },
       }}
     >
-      <Container maxWidth="sm" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth='sm' sx={{ position: 'relative', zIndex: 1 }}>
         {/* Back to Home Button */}
         <Box sx={{ mb: 3 }}>
           <Button
-            startIcon={<ArrowBack />}
+            startIcon={<ArrowBack sx={{ transform: 'rotateY(180deg)' }} />}
             onClick={() => navigate('/')}
             sx={{
               color: 'text.secondary',
@@ -146,40 +155,40 @@ const LoginPage: React.FC = () => {
               <Lock sx={{ fontSize: 32, color: 'white' }} />
             </Box>
             <Typography
-              variant="h5"
+              variant='h5'
               sx={{ fontWeight: 'bold', color: 'text.primary' }}
             >
               ورود به حساب کاربری
             </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            <Typography variant='body2' sx={{ color: 'text.secondary' }}>
               لطفاً ایمیل و رمز عبور خود را وارد کنید.
             </Typography>
           </Box>
 
           {/* Error Alert */}
           {error && (
-            <Alert severity="error" sx={{ mb: 3 }}>
+            <Alert severity='error' sx={{ mb: 3 }}>
               {error}
             </Alert>
           )}
 
           {/* Login Form */}
-          <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+          <Box component='form' onSubmit={handleSubmit(onSubmit)}>
             <Controller
-              name="email"
+              name='email'
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
-                  label="آدرس ایمیل"
-                  type="email"
+                  label='آدرس ایمیل'
+                  type='email'
                   error={!!errors.email}
                   helperText={errors.email?.message}
                   sx={{ mb: 3 }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position='start'>
                         <Email sx={{ color: 'text.secondary' }} />
                       </InputAdornment>
                     ),
@@ -189,29 +198,29 @@ const LoginPage: React.FC = () => {
             />
 
             <Controller
-              name="password"
+              name='password'
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
-                  label="رمز عبور"
+                  label='رمز عبور'
                   type={showPassword ? 'text' : 'password'}
                   error={!!errors.password}
                   helperText={errors.password?.message}
                   sx={{ mb: 4 }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position='start'>
                         <Lock sx={{ color: 'text.secondary' }} />
                       </InputAdornment>
                     ),
                     endAdornment: (
-                      <InputAdornment position="end">
+                      <InputAdornment position='end'>
                         <IconButton
                           onClick={() => setShowPassword(!showPassword)}
-                          edge="end"
-                          size="small"
+                          edge='end'
+                          size='small'
                         >
                           {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
@@ -223,10 +232,10 @@ const LoginPage: React.FC = () => {
             />
 
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
-              size="large"
+              variant='contained'
+              size='large'
               disabled={isLoading}
               sx={{
                 py: 1.5,
@@ -252,7 +261,7 @@ const LoginPage: React.FC = () => {
           <Box sx={{ textAlign: 'center' }}>
             <Link
               component={RouterLink}
-              to="/forgot-password"
+              to='/forgot-password'
               sx={{
                 color: theme.palette.primary.main,
                 textDecoration: 'none',
@@ -264,11 +273,11 @@ const LoginPage: React.FC = () => {
             >
               رمز عبور خود را فراموش کرده‌اید؟
             </Link>
-            <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+            <Typography variant='body2' color='text.secondary' sx={{ mt: 2 }}>
               حساب کاربری ندارید؟{' '}
               <Link
                 component={RouterLink}
-                to="/register"
+                to='/register'
                 sx={{
                   color: theme.palette.primary.main,
                   textDecoration: 'none',

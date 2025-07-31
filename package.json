@@ -2,6 +2,7 @@
   "name": "high-seas-vtt",
   "version": "1.0.0",
   "description": "Virtual Tabletop for آب‌های آزاد (High Seas) Persian pirate strategy game",
+  "type": "module",
   "private": true,
   "workspaces": [
     "apps/*",

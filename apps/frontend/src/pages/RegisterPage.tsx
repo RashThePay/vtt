@@ -34,16 +34,30 @@ import { registerUser, clearError } from '../store/slices/authSlice';
 import type { AppDispatch, RootState } from '../store/store';
 
 const schema = yup.object({
-  username: yup.string().min(3, 'نام کاربری باید حداقل ۳ کاراکتر باشد').required('نام کاربری الزامی است'),
-  email: yup.string().email('آدرس ایمیل نامعتبر است').required('ایمیل الزامی است'),
-  password: yup.string()
+  username: yup
+    .string()
+    .min(3, 'نام کاربری باید حداقل ۳ کاراکتر باشد')
+    .required('نام کاربری الزامی است'),
+  email: yup
+    .string()
+    .email('آدرس ایمیل نامعتبر است')
+    .required('ایمیل الزامی است'),
+  password: yup
+    .string()
     .min(8, 'رمز عبور باید حداقل ۸ کاراکتر باشد')
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, 'رمز عبور باید حداقل شامل یک حرف بزرگ، یک حرف کوچک و یک عدد باشد')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+      'رمز عبور باید حداقل شامل یک حرف بزرگ، یک حرف کوچک و یک عدد باشد'
+    )
     .required('رمز عبور الزامی است'),
-  confirmPassword: yup.string()
+  confirmPassword: yup
+    .string()
     .oneOf([yup.ref('password')], 'رمزهای عبور باید مطابقت داشته باشند')
     .required('لطفاً رمز عبور خود را تأیید کنید'),
-  agreeToTerms: yup.boolean().required().oneOf([true], 'شما باید با شرایط و ضوابط موافقت کنید'),
+  agreeToTerms: yup
+    .boolean()
+    .required()
+    .oneOf([true], 'شما باید با شرایط و ضوابط موافقت کنید'),
 });
 
 interface RegisterFormData {
@@ -58,7 +72,9 @@ const RegisterPage: React.FC = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, error, isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isLoading, error, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
@@ -93,10 +109,10 @@ const RegisterPage: React.FC = () => {
   const onSubmit = async (data: RegisterFormData) => {
     const { confirmPassword, agreeToTerms, ...registerData } = data;
     const resultAction = await dispatch(registerUser(registerData));
-    
+
     if (registerUser.fulfilled.match(resultAction)) {
       setSuccess('حساب کاربری با موفقیت ایجاد شد! در حال انتقال به داشبورد...');
-      
+
       // Redirect to dashboard after 2 seconds
       setTimeout(() => {
         navigate('/dashboard');
@@ -123,15 +139,16 @@ const RegisterPage: React.FC = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 30% 20%, rgba(25, 118, 210, 0.1) 0%, transparent 50%)',
+          background:
+            'radial-gradient(circle at 30% 20%, rgba(25, 118, 210, 0.1) 0%, transparent 50%)',
         },
       }}
     >
-      <Container maxWidth="sm" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth='sm' sx={{ position: 'relative', zIndex: 1 }}>
         {/* Back to Home Button */}
         <Box sx={{ mb: 3 }}>
           <Button
-            startIcon={<ArrowBack />}
+            startIcon={<ArrowBack sx={{ transform: 'rotateY(180deg)' }} />}
             onClick={() => navigate('/')}
             sx={{
               color: 'text.secondary',
@@ -173,8 +190,8 @@ const RegisterPage: React.FC = () => {
               <PersonAdd sx={{ fontSize: 32, color: 'white' }} />
             </Box>
             <Typography
-              variant="h4"
-              component="h1"
+              variant='h4'
+              component='h1'
               sx={{
                 fontWeight: 'bold',
                 mb: 1,
@@ -183,39 +200,39 @@ const RegisterPage: React.FC = () => {
             >
               ثبت نام
             </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            <Typography variant='body2' sx={{ color: 'text.secondary' }}>
               لطفاً اطلاعات خود را وارد کنید.
             </Typography>
           </Box>
 
           {/* Error/Success Alert */}
           {error && (
-            <Alert severity="error" sx={{ mb: 3 }}>
+            <Alert severity='error' sx={{ mb: 3 }}>
               {error}
             </Alert>
           )}
           {success && (
-            <Alert severity="success" sx={{ mb: 3 }}>
+            <Alert severity='success' sx={{ mb: 3 }}>
               {success}
             </Alert>
           )}
 
           {/* Registration Form */}
-          <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+          <Box component='form' onSubmit={handleSubmit(onSubmit)}>
             <Controller
-              name="username"
+              name='username'
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
-                  label="نام کاربری"
+                  label='نام کاربری'
                   error={!!errors.username}
                   helperText={errors.username?.message}
                   sx={{ mb: 3 }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position='start'>
                         <Person sx={{ color: 'text.secondary' }} />
                       </InputAdornment>
                     ),
@@ -225,20 +242,20 @@ const RegisterPage: React.FC = () => {
             />
 
             <Controller
-              name="email"
+              name='email'
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
-                  label="آدرس ایمیل"
-                  type="email"
+                  label='آدرس ایمیل'
+                  type='email'
                   error={!!errors.email}
                   helperText={errors.email?.message}
                   sx={{ mb: 3 }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position='start'>
                         <Email sx={{ color: 'text.secondary' }} />
                       </InputAdornment>
                     ),
@@ -248,29 +265,29 @@ const RegisterPage: React.FC = () => {
             />
 
             <Controller
-              name="password"
+              name='password'
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
-                  label="رمز عبور"
+                  label='رمز عبور'
                   type={showPassword ? 'text' : 'password'}
                   error={!!errors.password}
                   helperText={errors.password?.message}
                   sx={{ mb: 3 }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position='start'>
                         <Lock sx={{ color: 'text.secondary' }} />
                       </InputAdornment>
                     ),
                     endAdornment: (
-                      <InputAdornment position="end">
+                      <InputAdornment position='end'>
                         <IconButton
                           onClick={() => setShowPassword(!showPassword)}
-                          edge="end"
-                          size="small"
+                          edge='end'
+                          size='small'
                         >
                           {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
@@ -282,31 +299,37 @@ const RegisterPage: React.FC = () => {
             />
 
             <Controller
-              name="confirmPassword"
+              name='confirmPassword'
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
-                  label="تأیید رمز عبور"
+                  label='تأیید رمز عبور'
                   type={showConfirmPassword ? 'text' : 'password'}
                   error={!!errors.confirmPassword}
                   helperText={errors.confirmPassword?.message}
                   sx={{ mb: 3 }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position='start'>
                         <Lock sx={{ color: 'text.secondary' }} />
                       </InputAdornment>
                     ),
                     endAdornment: (
-                      <InputAdornment position="end">
+                      <InputAdornment position='end'>
                         <IconButton
-                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                          edge="end"
-                          size="small"
+                          onClick={() =>
+                            setShowConfirmPassword(!showConfirmPassword)
+                          }
+                          edge='end'
+                          size='small'
                         >
-                          {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                          {showConfirmPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     ),
@@ -316,7 +339,7 @@ const RegisterPage: React.FC = () => {
             />
 
             <Controller
-              name="agreeToTerms"
+              name='agreeToTerms'
               control={control}
               render={({ field }) => (
                 <FormControlLabel
@@ -325,15 +348,17 @@ const RegisterPage: React.FC = () => {
                       {...field}
                       checked={field.value}
                       sx={{
-                        color: errors.agreeToTerms ? 'error.main' : 'primary.main',
+                        color: errors.agreeToTerms
+                          ? 'error.main'
+                          : 'primary.main',
                       }}
                     />
                   }
                   label={
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant='body2' color='text.secondary'>
                       با{' '}
                       <Link
-                        href="/terms"
+                        href='/terms'
                         sx={{
                           color: theme.palette.primary.main,
                           textDecoration: 'none',
@@ -344,7 +369,7 @@ const RegisterPage: React.FC = () => {
                       </Link>{' '}
                       و{' '}
                       <Link
-                        href="/privacy"
+                        href='/privacy'
                         sx={{
                           color: theme.palette.primary.main,
                           textDecoration: 'none',
@@ -352,8 +377,8 @@ const RegisterPage: React.FC = () => {
                         }}
                       >
                         سیاست حفظ حریم خصوصی
-                      </Link>
-                      {' '}موافقت می‌کنم
+                      </Link>{' '}
+                      موافقت می‌کنم
                     </Typography>
                   }
                   sx={{ mb: 3 }}
@@ -361,16 +386,20 @@ const RegisterPage: React.FC = () => {
               )}
             />
             {errors.agreeToTerms && (
-              <Typography variant="caption" color="error" sx={{ display: 'block', mb: 2 }}>
+              <Typography
+                variant='caption'
+                color='error'
+                sx={{ display: 'block', mb: 2 }}
+              >
                 {errors.agreeToTerms.message}
               </Typography>
             )}
 
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
-              size="large"
+              variant='contained'
+              size='large'
               disabled={isLoading}
               sx={{
                 py: 1.5,
@@ -394,11 +423,11 @@ const RegisterPage: React.FC = () => {
 
           {/* Footer Links */}
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant='body2' color='text.secondary'>
               قبلاً حساب کاربری دارید؟{' '}
               <Link
                 component={RouterLink}
-                to="/login"
+                to='/login'
                 sx={{
                   color: theme.palette.primary.main,
                   textDecoration: 'none',
