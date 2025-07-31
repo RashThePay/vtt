@@ -18,12 +18,13 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { authService, handleAuthError } from '../utils/auth';
 
 const schema = yup.object({
   email: yup
     .string()
-    .email('Invalid email address')
-    .required('Email is required'),
+    .email('آدرس ایمیل نامعتبر است')
+    .required('ایمیل الزامی است'),
 });
 
 interface ForgotPasswordFormData {
@@ -54,17 +55,10 @@ const ForgotPasswordPage: React.FC = () => {
     setSuccess(null);
 
     try {
-      // TODO: Implement actual forgot password logic
-      console.log('Forgot password data:', data);
-
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      setSuccess(
-        'Password reset link has been sent to your email address. Please check your inbox.'
-      );
-    } catch (_err) {
-      setError('Failed to send reset email. Please try again.');
+      const response = await authService.forgotPassword(data.email);
+      setSuccess(response.message);
+    } catch (err) {
+      setError(handleAuthError(err));
     } finally {
       setIsLoading(false);
     }

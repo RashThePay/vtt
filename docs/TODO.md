@@ -71,10 +71,10 @@
 - [x] Create password hashing with bcrypt
 - [x] Build user registration endpoint
 - [x] Build user login endpoint
-- [ ] Implement password reset functionality
-- [ ] Create email verification system
-- [ ] Add rate limiting for auth endpoints
-- [ ] Implement refresh token mechanism
+- [x] Implement password reset functionality
+- [x] Create email verification system
+- [x] Add rate limiting for auth endpoints
+- [x] Implement refresh token mechanism
 - [x] Create user profile management endpoints
 
 #### Frontend Authentication
