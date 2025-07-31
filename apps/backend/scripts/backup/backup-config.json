@@ -1,0 +1,165 @@
+{
+  "backup": {
+    "enabled": true,
+    "types": {
+      "full": {
+        "enabled": true,
+        "schedule": "0 2 * * *",
+        "compression": true,
+        "encryption": false,
+        "retention": {
+          "daily": 7,
+          "weekly": 4,
+          "monthly": 12
+        }
+      },
+      "incremental": {
+        "enabled": true,
+        "schedule": "0 * * * *",
+        "compression": true,
+        "encryption": false,
+        "retention": {
+          "hourly": 24,
+          "daily": 7
+        }
+      },
+      "schema": {
+        "enabled": true,
+        "schedule": "0 3 * * 1",
+        "compression": false,
+        "encryption": false,
+        "retention": {
+          "weekly": 8
+        }
+      }
+    },
+    "destinations": {
+      "local": {
+        "enabled": true,
+        "path": "./backups",
+        "maxSize": "10GB"
+      },
+      "s3": {
+        "enabled": false,
+        "bucket": "",
+        "region": "us-east-1",
+        "storageClass": "STANDARD_IA",
+        "encryption": true
+      },
+      "azure": {
+        "enabled": false,
+        "containerName": "",
+        "storageAccount": "",
+        "accessTier": "Cool"
+      },
+      "googleCloud": {
+        "enabled": false,
+        "bucket": "",
+        "region": "us-central1",
+        "storageClass": "NEARLINE"
+      }
+    },
+    "monitoring": {
+      "enabled": true,
+      "healthChecks": {
+        "enabled": true,
+        "schedule": "0 1 * * *",
+        "maxBackupAge": "48h"
+      },
+      "alerts": {
+        "enabled": true,
+        "onFailure": true,
+        "onSuccess": false,
+        "channels": {
+          "email": {
+            "enabled": false,
+            "recipients": [],
+            "smtp": {
+              "host": "",
+              "port": 587,
+              "secure": false,
+              "auth": {
+                "user": "",
+                "pass": ""
+              }
+            }
+          },
+          "slack": {
+            "enabled": false,
+            "webhookUrl": "",
+            "channel": "#alerts"
+          },
+          "discord": {
+            "enabled": false,
+            "webhookUrl": ""
+          },
+          "webhook": {
+            "enabled": false,
+            "url": "",
+            "method": "POST",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "performance": {
+      "parallelBackups": false,
+      "compressionLevel": 6,
+      "networkTimeout": "30m",
+      "maxRetries": 3,
+      "retryDelay": "5m"
+    },
+    "security": {
+      "encryption": {
+        "algorithm": "AES-256-CBC",
+        "keyDerivation": "PBKDF2"
+      },
+      "accessControl": {
+        "backupUser": "backup_user",
+        "minimumPermissions": ["SELECT", "USAGE"]
+      }
+    }
+  },
+  "restore": {
+    "verification": {
+      "enabled": true,
+      "checksumValidation": true,
+      "structureValidation": true
+    },
+    "options": {
+      "dropExisting": false,
+      "createDatabase": false,
+      "restorePermissions": false,
+      "restoreOwnership": false
+    }
+  },
+  "maintenance": {
+    "cleanup": {
+      "enabled": true,
+      "schedule": "0 3 * * 0",
+      "deleteCorruptedBackups": true,
+      "compactLogs": true
+    },
+    "optimization": {
+      "enabled": true,
+      "vacuumAnalyze": {
+        "enabled": true,
+        "schedule": "0 4 * * 0"
+      },
+      "reindexing": {
+        "enabled": false,
+        "schedule": "0 5 * * 0"
+      }
+    }
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "destination": "./logs/backup.log",
+    "rotation": {
+      "enabled": true,
+      "maxSize": "100MB",
+      "maxFiles": 10
+    }
+  }
+}
