@@ -7,7 +7,6 @@ const SALT_ROUNDS = 12;
 const JWT_SECRET =
   process.env.JWT_SECRET || 'fallback-secret-change-in-production';
 // JWT_REFRESH_SECRET is used in refresh token verification
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const JWT_REFRESH_SECRET =
   process.env.JWT_REFRESH_SECRET ||
   'fallback-refresh-secret-change-in-production';

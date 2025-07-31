@@ -1,6 +1,7 @@
 {
   "name": "@high-seas/backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "Backend API server for High Seas VTT",
   "main": "dist/index.js",
   "scripts": {

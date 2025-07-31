@@ -8,6 +8,7 @@ import winston from 'winston';
 
 // Import routes
 import authRoutes from './routes/auth';
+import mapRoutes from './routes/maps';
 import { generalRateLimit } from './middleware/rateLimit';
 import { verifyEmailConnection } from './utils/email';
 import { cleanupExpiredTokens } from './utils/auth';
@@ -54,6 +55,7 @@ app.use(generalRateLimit); // Apply general rate limiting to all routes
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/maps', mapRoutes);
 
 // Basic health check endpoint
 app.get('/health', (req, res) => {

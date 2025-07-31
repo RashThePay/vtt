@@ -58,6 +58,7 @@ model Game {
   gameLog      GameLog[]
   markets      Market[]
   missions     Mission[]
+  gameMap      GameMap?
   
   @@map("games")
 }
@@ -177,4 +178,53 @@ enum MissionStatus {
   IN_PROGRESS
   COMPLETED
   FAILED
+}
+
+// Game Maps and Grid System
+model GameMap {
+  id          String   @id @default(uuid())
+  gameId      String   @map("game_id")
+  name        String   @default("Default Map")
+  description String?
+  gridSize    Int      @default(20) @map("grid_size") // 20x20 grid
+  regions     Json     // Region definitions and weather data
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  game        Game       @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  features    MapFeature[]
+  
+  @@unique([gameId]) // One map per game
+  @@map("game_maps")
+}
+
+// Map Features (Islands, Ports, Reefs, etc.)
+model MapFeature {
+  id          String      @id @default(uuid())
+  mapId       String      @map("map_id")
+  type        FeatureType
+  name        String
+  description String?
+  position    Json        // { x, y }
+  properties  Json?       // Feature-specific properties
+  isVisible   Boolean     @default(true) @map("is_visible")
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  
+  // Relations
+  map         GameMap     @relation(fields: [mapId], references: [id], onDelete: Cascade)
+  
+  @@map("map_features")
+}
+
+enum FeatureType {
+  ISLAND
+  PORT
+  REEF
+  HAZARD
+  WEATHER_SYSTEM
+  FOG_BANK
+  CURSED_WATER
+  TREASURE_SITE
 }
