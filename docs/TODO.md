@@ -55,10 +55,10 @@
 
 #### Development Tools
 
-- [ ] Set up Docker development environment
-- [ ] Create docker-compose.dev.yml
-- [ ] Configure VS Code workspace settings
-- [ ] Set up debugging configuration
+- [l] Set up Docker development environment
+- [l] Create docker-compose.dev.yml
+- [l] Configure VS Code workspace settings
+- [l] Set up debugging configuration
 - [x] Create npm scripts for common tasks
 - [x] Set up environment variable templates
 
@@ -84,10 +84,10 @@
 - [x] Create authentication Redux slice
 - [x] Build login page component
 - [x] Build registration page component
-- [ ] Build password reset page component
+- [x] Build password reset page component
 - [x] Implement protected route wrapper
 - [x] Add authentication status indicators
-- [ ] Create user profile page
+- [x] Create user dashboard page
 - [x] Implement automatic token refresh
 
 #### Database Schema v1
@@ -98,20 +98,20 @@
 - [x] Set up foreign key constraints
 - [x] Create database migration scripts
 - [x] Add database validation constraints
-- [ ] Test database schema with sample data
+- [x] Test database schema with sample data
 
 ### Week 7-10: Core Game Board Implementation
 
 #### Map System Backend
 
 - [x] Design game map database schema
-- [ ] Create 20x20 grid data structure
+- [x] Create 20x20 grid data structure
 - [x] Implement region-based map division
 - [x] Create map feature storage (islands, ports, reefs)
-- [ ] Build map CRUD API endpoints
-- [ ] Implement map validation logic
-- [ ] Create default map templates
-- [ ] Add map import/export functionality
+- [x] Build map CRUD API endpoints
+- [x] Implement map validation logic
+- [x] Create default map templates
+- [x] Add map import/export functionality
 
 #### Map System Frontend
 

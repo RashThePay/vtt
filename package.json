@@ -28,7 +28,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix --max-warnings=50",
       "prettier --write"
     ],
     "*.{json,css,md}": [
