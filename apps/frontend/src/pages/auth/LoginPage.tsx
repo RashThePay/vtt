@@ -26,8 +26,8 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, clearError } from '../store/slices/authSlice';
-import type { AppDispatch, RootState } from '../store/store';
+import { loginUser, clearError } from '../../store/slices/authSlice';
+import type { AppDispatch, RootState } from '../../store/store';
 
 const schema = yup.object({
   email: yup

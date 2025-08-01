@@ -30,8 +30,8 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser, clearError } from '../store/slices/authSlice';
-import type { AppDispatch, RootState } from '../store/store';
+import { registerUser, clearError } from '../../store/slices/authSlice';
+import type { AppDispatch, RootState } from '../../store/store';
 
 const schema = yup.object({
   username: yup
@@ -106,19 +106,30 @@ const RegisterPage: React.FC = () => {
     }
   }, [isAuthenticated, navigate]);
 
+  const [redirectCountdown, setRedirectCountdown] = useState<number | null>(
+    null
+  );
+
   const onSubmit = async (data: RegisterFormData) => {
     const { confirmPassword, agreeToTerms, ...registerData } = data;
     const resultAction = await dispatch(registerUser(registerData));
 
     if (registerUser.fulfilled.match(resultAction)) {
       setSuccess('حساب کاربری با موفقیت ایجاد شد! در حال انتقال به داشبورد...');
-
-      // Redirect to dashboard after 2 seconds
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 2000);
+      setRedirectCountdown(2); // seconds
     }
   };
+
+  useEffect(() => {
+    if (redirectCountdown !== null && redirectCountdown > 0) {
+      const timer = setTimeout(() => {
+        setRedirectCountdown(prev => (prev !== null ? prev - 1 : null));
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (redirectCountdown === 0) {
+      navigate('/dashboard');
+    }
+  }, [redirectCountdown, navigate]);
 
   return (
     <Box
@@ -214,6 +225,11 @@ const RegisterPage: React.FC = () => {
           {success && (
             <Alert severity='success' sx={{ mb: 3 }}>
               {success}
+              {redirectCountdown !== null && (
+                <Typography variant='caption' sx={{ display: 'block', mt: 1 }}>
+                  انتقال در {redirectCountdown} ثانیه...
+                </Typography>
+              )}
             </Alert>
           )}
 

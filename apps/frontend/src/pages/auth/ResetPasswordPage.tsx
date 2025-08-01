@@ -23,7 +23,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { authService, handleAuthError } from '../utils/auth';
+import { authService, handleAuthError } from '../../utils/auth';
 
 const schema = yup.object({
   password: yup
@@ -88,22 +88,37 @@ const ResetPasswordPage: React.FC = () => {
     try {
       await authService.resetPassword(token, data.password);
       setSuccess(true);
-
-      // Redirect to login after 3 seconds
-      setTimeout(() => {
-        navigate('/login', {
-          state: {
-            message:
-              'رمز عبور با موفقیت تغییر یافت. اکنون می‌توانید وارد شوید.',
-          },
-        });
-      }, 3000);
     } catch (err) {
       setError(handleAuthError(err));
     } finally {
       setLoading(false);
     }
   };
+
+  const [countdown, setCountdown] = useState(3);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (success) {
+      timer = setInterval(() => {
+        setCountdown(prev => {
+          if (prev <= 1) {
+            navigate('/login', {
+              state: {
+                message:
+                  'رمز عبور با موفقیت تغییر یافت. اکنون می‌توانید وارد شوید.',
+              },
+            });
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [success, navigate]);
 
   if (success) {
     return (
@@ -150,10 +165,28 @@ const ResetPasswordPage: React.FC = () => {
               variant='body1'
               sx={{ mb: 3, color: theme.palette.text.secondary }}
             >
-              رمز عبور شما با موفقیت تغییر یافت. در حال انتقال به صفحه ورود...
+              رمز عبور شما با موفقیت تغییر یافت. انتقال به صفحه ورود در{' '}
+              {countdown} ثانیه...
             </Typography>
 
             <CircularProgress size={24} />
+
+            <Box sx={{ mt: 2 }}>
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={() =>
+                  navigate('/login', {
+                    state: {
+                      message:
+                        'رمز عبور با موفقیت تغییر یافت. اکنون می‌توانید وارد شوید.',
+                    },
+                  })
+                }
+              >
+                رفتن به صفحه ورود
+              </Button>
+            </Box>
           </Paper>
         </Box>
       </Container>

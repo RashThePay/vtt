@@ -13,11 +13,11 @@ import type { AppDispatch } from '../../store/store';
 
 // Import pages
 import LandingPage from '../../pages/LandingPage';
-import LoginPage from '../../pages/LoginPage';
-import RegisterPage from '../../pages/RegisterPage';
-import ForgotPasswordPage from '../../pages/ForgotPasswordPage';
-import ResetPasswordPage from '../../pages/ResetPasswordPage';
-import VerifyEmailPage from '../../pages/VerifyEmailPage';
+import LoginPage from '../../pages/auth/LoginPage';
+import RegisterPage from '../../pages/auth/RegisterPage';
+import ForgotPasswordPage from '../../pages/auth/ForgotPasswordPage';
+import ResetPasswordPage from '../../pages/auth/ResetPasswordPage';
+import VerifyEmailPage from '../../pages/auth/VerifyEmailPage';
 import DashboardPage from '../../pages/DashboardPage';
 import NotFoundPage from '../../pages/NotFoundPage';
 import ProtectedRoute from '../ProtectedRoute';

@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { Error, CheckCircle } from '@mui/icons-material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { authService, handleAuthError } from '../utils/auth';
+import { authService, handleAuthError } from '../../utils/auth';
 
 const VerifyEmailPage: React.FC = () => {
   const theme = useTheme();

@@ -18,7 +18,7 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { authService, handleAuthError } from '../utils/auth';
+import { authService, handleAuthError } from '../../utils/auth';
 
 const schema = yup.object({
   email: yup

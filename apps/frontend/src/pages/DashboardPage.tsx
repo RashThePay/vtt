@@ -141,7 +141,7 @@ const DashboardPage: React.FC = () => {
                   ایجاد کمپین
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                  یک ماجراجویی جدید را شروع کنید
+                  یک ماجراجویی جدید شروع کنید
                 </Typography>
               </CardContent>
             </Card>
@@ -173,7 +173,7 @@ const DashboardPage: React.FC = () => {
                   پیوستن به جلسه
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                  با دوستان خود ارتباط برقرار کنید
+                  با دوستانتان بازی کنید
                 </Typography>
               </CardContent>
             </Card>
@@ -205,7 +205,7 @@ const DashboardPage: React.FC = () => {
                   تنظیمات
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                  تجربه خود را سفارشی کنید
+                  تجربه‌تان را سفارشی کنید
                 </Typography>
               </CardContent>
             </Card>
@@ -226,10 +226,10 @@ const DashboardPage: React.FC = () => {
           </Typography>
           <Box sx={{ textAlign: 'center', py: 8 }}>
             <Typography variant='h6' color='text.secondary' sx={{ mb: 2 }}>
-              هیچ فعالیتی اخیر نیست
+              هیچ فعالیتی نیست
             </Typography>
             <Typography variant='body2' color='text.secondary'>
-              برای دیدن فعالیت‌ها، اولین کمپین خود را شروع کنید
+              برای دیدن فعالیت‌ها، اولین کمپین‌تان را شروع کنید
             </Typography>
           </Box>
         </Paper>
