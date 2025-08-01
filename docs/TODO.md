@@ -115,10 +115,10 @@
 
 #### Map System Frontend
 
-- [ ] Set up Konva.js for canvas rendering
-- [ ] Create responsive 20x20 grid component
-- [ ] Implement grid coordinate system
-- [ ] Build interactive grid cells
+- [x] Set up Konva.js for canvas rendering
+- [x] Create responsive 20x20 grid component
+- [x] Implement grid coordinate system
+- [x] Build interactive grid cells
 - [ ] Add grid navigation and zoom
 - [ ] Create visual grid styling
 - [ ] Implement coordinate display

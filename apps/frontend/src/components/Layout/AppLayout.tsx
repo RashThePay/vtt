@@ -19,6 +19,7 @@ import ForgotPasswordPage from '../../pages/auth/ForgotPasswordPage';
 import ResetPasswordPage from '../../pages/auth/ResetPasswordPage';
 import VerifyEmailPage from '../../pages/auth/VerifyEmailPage';
 import DashboardPage from '../../pages/DashboardPage';
+import MapTestPage from '../../pages/MapTestPage';
 import NotFoundPage from '../../pages/NotFoundPage';
 import ProtectedRoute from '../ProtectedRoute';
 
@@ -80,6 +81,7 @@ const AppLayout: React.FC = () => {
           </ProtectedRoute>
         }
       />
+      <Route path='/map-test' element={<MapTestPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );

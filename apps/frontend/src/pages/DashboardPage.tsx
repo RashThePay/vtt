@@ -114,7 +114,7 @@ const DashboardPage: React.FC = () => {
 
         {/* Quick Actions */}
         <Grid container spacing={3} sx={{ mb: 4 }}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Card
               sx={{
                 height: '100%',
@@ -146,7 +146,7 @@ const DashboardPage: React.FC = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Card
               sx={{
                 height: '100%',
@@ -178,7 +178,7 @@ const DashboardPage: React.FC = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Card
               sx={{
                 height: '100%',
@@ -206,6 +206,39 @@ const DashboardPage: React.FC = () => {
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
                   تجربه‌تان را سفارشی کنید
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Card
+              sx={{
+                height: '100%',
+                background: alpha(theme.palette.background.paper, 0.8),
+                backdropFilter: 'blur(10px)',
+                border: `1px solid ${alpha(theme.palette.info.main, 0.1)}`,
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                '&:hover': {
+                  transform: 'translateY(-4px)',
+                  boxShadow: `0 20px 40px ${alpha(theme.palette.info.main, 0.1)}`,
+                },
+              }}
+              onClick={() => navigate('/map-test')}
+            >
+              <CardContent sx={{ p: 4, textAlign: 'center' }}>
+                <Dashboard
+                  sx={{
+                    fontSize: 48,
+                    color: theme.palette.info.main,
+                    mb: 2,
+                  }}
+                />
+                <Typography variant='h6' sx={{ mb: 1, fontWeight: 'bold' }}>
+                  Map Test
+                </Typography>
+                <Typography variant='body2' color='text.secondary'>
+                  Test the new grid system
                 </Typography>
               </CardContent>
             </Card>
